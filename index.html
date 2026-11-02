@@ -19,6 +19,25 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Подсвеченная колонна из оникса и знак DGM SYSTEM">
 <meta name="twitter:card" content="summary_large_image">
+<script>
+/* диагностика: откройте страницу с ?debug — внизу появится отчёт об ошибках и состоянии видео/картинок */
+(function(){
+  if(!/[?&#]debug/.test(location.href))return;
+  var errs=[];
+  window.addEventListener('error',function(e){errs.push((e.message||'error')+' @'+(e.lineno||'?')+':'+(e.colno||'?')+(e.target&&e.target.src?' src='+String(e.target.src).slice(0,60):''));},true);
+  window.addEventListener('unhandledrejection',function(e){errs.push('promise: '+(e.reason&&e.reason.message||e.reason));});
+  window.addEventListener('load',function(){setTimeout(function(){
+    var L=[],ua=navigator.userAgent;
+    L.push('UA: '+ua);L.push('Ошибок: '+errs.length);errs.forEach(function(x){L.push(' • '+x)});
+    L.push('stone: svg='+document.querySelectorAll('.stone svg').length+', image='+document.querySelectorAll('.stone image').length);
+    L.push('lumv='+(document.getElementById('lumv')||{}).textContent+', tm='+((document.getElementById('tm')||{getAttribute:function(){return''}}).getAttribute('values')||'').slice(0,24));
+    Array.prototype.forEach.call(document.querySelectorAll('video'),function(v,i){L.push('video'+i+': ready='+v.readyState+' net='+v.networkState+' err='+(v.error?v.error.code:'-')+' paused='+v.paused+' src='+(v.currentSrc||v.src||'').split('/').pop());});
+    Array.prototype.forEach.call(document.querySelectorAll('img.dgm-vid__poster'),function(im,i){L.push('poster'+i+': ok='+im.complete+' w='+im.naturalWidth+' src='+(im.currentSrc||'').split('/').pop());});
+    var d=document.createElement('pre');d.style.cssText='position:fixed;left:0;right:0;bottom:0;max-height:55vh;overflow:auto;margin:0;padding:10px;background:#000;color:#0f0;font:11px/1.4 monospace;z-index:99999;white-space:pre-wrap;word-break:break-all';
+    d.textContent=L.join('\n');document.body.appendChild(d);
+  },2500);});
+})();
+</script>
 <script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('dgm-theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}d.setAttribute('data-theme',t);var m=document.getElementById('theme-color');if(m)m.setAttribute('content',t==='dark'?'#141311':'#f3efe7');})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"DGM SYSTEM","url":"https://dg-webdesign.github.io/dgm-system/","logo":"https://dg-webdesign.github.io/dgm-system/brand/icon-192.png","description":"Матричная подсветка для оникса, кварцита и витражей.","telephone":"+79309672131","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Нахимовский проспект, 24, ЦДИ «Экспострой»","addressCountry":"RU"},"contactPoint":{"@type":"ContactPoint","telephone":"+79309672131","contactType":"customer service","availableLanguage":"ru"}}</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23f3efe7'/%3E%3Cpath fill='%231c1b19' d='M18 10h9v44h-9zM31 10h15v44H31z'/%3E%3C/svg%3E">
@@ -41,7 +60,7 @@ header .wrap{display:flex;align-items:center;gap:14px;height:76px}
 .logo svg{width:20px;height:28px;flex:none;display:block}.logo b{font-weight:600}
 .logo span{display:block;padding-top:1px}
 .logo-s{color:var(--mute);font-size:11px}.logo-s svg{width:14px;height:20px}
-nav{margin-left:auto;display:flex;gap:clamp(22px,3vw,44px);font-size:13px}
+nav{margin:0 auto;padding:0 clamp(16px,2vw,32px);display:flex;align-items:center;gap:clamp(22px,2.6vw,40px);font-size:13px}
 nav a{text-decoration:none;color:var(--mute);padding:6px 0}
 nav a:hover,nav a:focus-visible{color:var(--ink)}
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,.knob:focus-visible{outline:2px solid var(--deep);outline-offset:3px}
@@ -320,7 +339,7 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 <path d="M24 312h22" stroke="#8fb7e8" stroke-width="2" stroke-linecap="round"/><path d="M20 312l9-5v10z" fill="#8fb7e8"/><text x="54" y="317">охлаждение</text>
 <path d="M176 312h22" stroke="#fdc68c" stroke-width="2.4"/><text x="206" y="317">контур 1</text>
 <path d="M312 312h22" stroke="#fff1dc" stroke-width="2.4"/><text x="342" y="317">контур 2</text></g>
-</svg><figcaption>Охлаждение модулей и два рабочих контура матрицы дают гарантию долговечной работы модулей и сохранение камня на десятилетия</figcaption></figure>
+</svg><figcaption>Охлаждение модулей и два рабочих контура матрицы обеспечивают долговечную работу модулей и сохранность камня на десятилетия</figcaption></figure>
 <ol class="layers">
 <li><div><b>Корпус</b><span>Алюминиевый композит и HIPS-стекло, склеенные полимерными составами</span></div></li>
 <li><div><b>Матрица светодиодов</b><span>Светодиоды с высокой плотностью размещения</span></div></li>
@@ -490,7 +509,7 @@ var TD={"h": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAY
 function mk(n,a){var e=document.createElementNS('http://www.w3.org/2000/svg',n);for(var k in a)e.setAttribute(k,a[k]);return e}
 document.querySelectorAll('.stone').forEach(function(g){var d=g.dataset,w=+d.w,h=+d.h,
 o=mk('svg',{x:+d.x,y:+d.y,width:w,height:h});if(d.c)g.setAttribute('clip-path','url(#'+d.c+')');
-var im=function(c,s){var i=mk('image',{x:0,y:0,width:w,height:h,preserveAspectRatio:'none',class:c});i.setAttribute('href',s);return i};
+var im=function(c,s){var i=mk('image',{x:0,y:0,width:w,height:h,preserveAspectRatio:'none',class:c});i.setAttribute('href',s);i.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href',s);return i};
 o.appendChild(im('dk',TD[d.tex]));o.appendChild(im('lit',TL[d.tex]));o.appendChild(im('bloomL',TL[d.tex]));g.appendChild(o)});
 (function(){
 var r=document.getElementById('lum'),o=document.getElementById('lumv'),root=document.documentElement;
