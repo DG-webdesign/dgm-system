@@ -20,22 +20,41 @@
 <meta property="og:image:alt" content="Подсвеченная колонна из оникса и знак DGM SYSTEM">
 <meta name="twitter:card" content="summary_large_image">
 <script>
-/* диагностика: откройте страницу с ?debug — внизу появится отчёт об ошибках и состоянии видео/картинок */
+/* диагностика: откройте страницу с ?debug — внизу появится живой отчёт (обновляется каждую секунду) */
 (function(){
   if(!/[?&#]debug/.test(location.href))return;
   var errs=[];
-  window.addEventListener('error',function(e){errs.push((e.message||'error')+' @'+(e.lineno||'?')+':'+(e.colno||'?')+(e.target&&e.target.src?' src='+String(e.target.src).slice(0,60):''));},true);
-  window.addEventListener('unhandledrejection',function(e){errs.push('promise: '+(e.reason&&e.reason.message||e.reason));});
-  window.addEventListener('load',function(){setTimeout(function(){
-    var L=[],ua=navigator.userAgent;
-    L.push('UA: '+ua);L.push('Ошибок: '+errs.length);errs.forEach(function(x){L.push(' • '+x)});
-    L.push('stone: svg='+document.querySelectorAll('.stone svg').length+', image='+document.querySelectorAll('.stone image').length);
-    L.push('lumv='+(document.getElementById('lumv')||{}).textContent+', tm='+((document.getElementById('tm')||{getAttribute:function(){return''}}).getAttribute('values')||'').slice(0,24));
-    Array.prototype.forEach.call(document.querySelectorAll('video'),function(v,i){L.push('video'+i+': ready='+v.readyState+' net='+v.networkState+' err='+(v.error?v.error.code:'-')+' paused='+v.paused+' src='+(v.currentSrc||v.src||'').split('/').pop());});
-    Array.prototype.forEach.call(document.querySelectorAll('img.dgm-vid__poster'),function(im,i){L.push('poster'+i+': ok='+im.complete+' w='+im.naturalWidth+' src='+(im.currentSrc||'').split('/').pop());});
-    var d=document.createElement('pre');d.style.cssText='position:fixed;left:0;right:0;bottom:0;max-height:55vh;overflow:auto;margin:0;padding:10px;background:#000;color:#0f0;font:11px/1.4 monospace;z-index:99999;white-space:pre-wrap;word-break:break-all';
-    d.textContent=L.join('\n');document.body.appendChild(d);
-  },2500);});
+  window.addEventListener('error',function(e){errs.push((e.message||'error')+' @'+(e.lineno||'?')+(e.target&&e.target.src?' src='+String(e.target.src).slice(0,50):''));},true);
+  window.addEventListener('unhandledrejection',function(e){errs.push('promise: '+(e.reason&&(e.reason.name+' '+e.reason.message)||e.reason));});
+  var decode={},pre;
+  function probe(){
+    var st=document.querySelectorAll('.stone image');
+    Array.prototype.forEach.call(st,function(im,i){
+      if(decode[i])return;decode[i]='...';
+      var t=new Image();t.onload=function(){decode[i]=t.naturalWidth+'x'+t.naturalHeight};t.onerror=function(){decode[i]='ОШИБКА'};
+      t.src=im.getAttribute('href')||'';
+    });
+  }
+  function report(){
+    var L=[],cs=document.documentElement.style;
+    L.push('iOS UA: '+(navigator.userAgent.match(/OS [\d_]+/)||[''])[0]+' | scroll='+Math.round(window.scrollY));
+    L.push('Ошибки('+errs.length+'): '+errs.join(' | '));
+    L.push('rev='+cs.getPropertyValue('--rev')+' lum='+cs.getPropertyValue('--lum')+' reduce='+(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)+' lowpower?='+(document.hidden?'hidden':'visible'));
+    L.push('камень: декод='+Object.keys(decode).map(function(k){return decode[k]}).join(','));
+    var im0=document.querySelector('.stone image');
+    if(im0){var bb=im0.getBoundingClientRect();L.push('stone image box '+Math.round(bb.width)+'x'+Math.round(bb.height)+' op='+getComputedStyle(im0).opacity+' disp='+getComputedStyle(im0).display);}
+    var v0=document.createElement('video');
+    L.push('mp4='+v0.canPlayType('video/mp4; codecs="avc1.640028"')+' webp-support='+(document.createElement('canvas').toDataURL('image/webp').indexOf('image/webp')===5));
+    Array.prototype.forEach.call(document.querySelectorAll('[data-dgm-video]'),function(c,i){
+      var v=c.querySelector('video'),p=c.querySelector('img.dgm-vid__poster'),bt=c.querySelector('.dgm-vid__btn'),r=c.getBoundingClientRect();
+      L.push('карточка'+i+': top='+Math.round(r.top)+' w='+Math.round(r.width)+' ready='+v.readyState+' net='+v.networkState+' err='+(v.error?v.error.code+':'+v.error.message:'-')+' paused='+v.paused+' file='+(v.currentSrc||v.src||'нет').split('/').pop()+' | постер ok='+p.complete+' w='+p.naturalWidth+' | кнопка hidden='+bt.hidden+' класс='+c.className);
+    });
+    pre.textContent=L.join('\n');
+  }
+  window.addEventListener('load',function(){
+    pre=document.createElement('pre');pre.style.cssText='position:fixed;left:0;right:0;bottom:0;max-height:45vh;overflow:auto;margin:0;padding:8px;background:rgba(0,0,0,.92);color:#0f0;font:10px/1.35 monospace;z-index:99999;white-space:pre-wrap;word-break:break-all;pointer-events:none';
+    document.body.appendChild(pre);probe();report();setInterval(report,1000);
+  });
 })();
 </script>
 <script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('dgm-theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}d.setAttribute('data-theme',t);var m=document.getElementById('theme-color');if(m)m.setAttribute('content',t==='dark'?'#141311':'#f3efe7');})();</script>
@@ -344,7 +363,7 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 <li><div><b>Корпус</b><span>Алюминиевый композит и HIPS-стекло, склеенные полимерными составами</span></div></li>
 <li><div><b>Матрица светодиодов</b><span>Светодиоды с высокой плотностью размещения</span></div></li>
 <li><div><b>Светофильтр</b><span>HIPS-стекло, устойчивое к нагреву и ультрафиолету</span></div></li>
-<li><div><b>Подсвечиваемый камень</b><span>Лучше всего раскрывается прозрачный камень толщиной 20 мм</span></div></li>
+<li><div><b>Подсвечиваемый камень</b><span>Ониксы из Индии и Бразилии особенно эффектно смотрятся в матричной подсветке</span></div></li>
 </ol>
 </div>
 </div></section>
