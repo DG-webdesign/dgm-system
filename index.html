@@ -241,6 +241,28 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 .dgm-vid__btn[aria-pressed="true"] .i-play{display:none}
 .dgm-vid__btn[aria-pressed="true"] .i-pause{display:block}
 @media(prefers-reduced-motion:reduce){.dgm-vid__video{transition:none}}
+
+/* ---- схема модуля «по слоям» ---- */
+.mx svg{touch-action:pan-y}
+.mx-l{transition:opacity .35s ease}
+.mx.hl .mx-l{opacity:.22}.mx.hl .mx-l.on{opacity:1}
+.mx-mk{cursor:pointer;transition:opacity .35s ease}
+.mx-mk circle{fill:#14110e;transition:fill .25s,stroke .25s}
+.mx-mk.on circle{fill:#cfc5b3}.mx-mk.on text{fill:#14110e}
+.mx-ctl{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;margin:0 0 14px}
+.mx-b{font:500 13px/1 var(--sans);color:#cfc5b3;background:transparent;border:1px solid #3d3830;padding:10px 14px;display:inline-flex;align-items:center;gap:9px;cursor:pointer;transition:border-color .2s,color .2s}
+.mx-b i{width:18px;height:2.4px;display:block;transition:opacity .2s}
+.mx-b:hover,.mx-b:focus-visible{border-color:#8a7f6f}
+.mx-b[aria-pressed="false"]{color:#7d7568}.mx-b[aria-pressed="false"] i{opacity:.25}
+.mx-heat{font-size:13px;color:#cfc5b3;display:inline-flex;align-items:center;gap:9px;margin-left:6px}
+.mx-heat i{width:18px;height:0;border-top:1.6px dashed #d98a5f;display:block}
+.mx-st{margin:0 0 10px;color:#ece6d9;font-size:14px;min-height:3.2em}
+.mx-list li{cursor:pointer;transition:opacity .3s}
+.mx-list li:focus-visible{outline:1px solid var(--deep);outline-offset:6px}
+.mx-list.hl li{opacity:.4}.mx-list.hl li.on{opacity:1}
+@keyframes mxFlow{to{stroke-dashoffset:-20}}
+#mx-heat path{stroke-dasharray:5 5;animation:mxFlow 1.2s linear infinite}
+@media (prefers-reduced-motion:reduce){#mx-heat path{animation:none}.mx-l,.mx-mk,.mx-list li{transition:none}}
 </style>
 </head>
 <body>
@@ -338,32 +360,31 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 <section id="mods"><div class="wrap">
 <h2>Как устроен матричный модуль</h2>
 <div class="split">
-<figure class="fig" style="margin:0"><svg viewBox="0 0 480 330" role="img" aria-label="Схема модуля в разрезе: корпус с отводом тепла, матрица светодиодов из двух рабочих контуров, светофильтр и камень">
-<rect width="480" height="330" fill="#14110e"/>
-<g class="glow"><rect x="290" y="56" width="170" height="220" fill="rgb(var(--glow))" opacity=".5" filter="url(#blur)"/></g>
-<g stroke="#8fb7e8" stroke-width="2" stroke-linecap="round" fill="none"><path d="M72 112H34M72 166H34M72 220H34"/></g>
-<g fill="#8fb7e8"><path d="M26 112l10-6v12zM26 166l10-6v12zM26 220l10-6v12z"/></g>
-<rect x="76" y="52" width="46" height="228" fill="#3c3c3c"/>
-<rect x="76" y="52" width="46" height="228" fill="none" stroke="#5a5a5a"/>
-<rect x="122" y="52" width="30" height="228" fill="#8a8a8a"/>
-<g fill="none" stroke-width="1.6"><path d="M127 72V216M127 72H131M127 144H131M127 216H131" stroke="#fdc68c"/><path d="M147 108V252M147 108H143M147 180H143M147 252H143" stroke="#fff1dc"/></g>
-<rect x="131" y="66" width="12" height="12" fill="#fdc68c"/><rect x="131" y="102" width="12" height="12" fill="#fff1dc"/><rect x="131" y="138" width="12" height="12" fill="#fdc68c"/><rect x="131" y="174" width="12" height="12" fill="#fff1dc"/><rect x="131" y="210" width="12" height="12" fill="#fdc68c"/><rect x="131" y="246" width="12" height="12" fill="#fff1dc"/>
-<rect x="152" y="52" width="12" height="228" fill="#d9d5cf" opacity=".85"/>
-<g class="stone" data-x="164" data-y="52" data-w="124" data-h="228" data-tex="s"></g>
-<g stroke-width="1.2" opacity=".85"><path d="M143 72H288" stroke="#fdc68c"/><path d="M143 108H288" stroke="#fff1dc"/><path d="M143 144H288" stroke="#fdc68c"/><path d="M143 180H288" stroke="#fff1dc"/><path d="M143 216H288" stroke="#fdc68c"/><path d="M143 252H288" stroke="#fff1dc"/></g>
-<g class="glow" stroke="rgb(var(--glow))" stroke-width="1.4"><path d="M288 72H452"/><path d="M288 108H452"/><path d="M288 144H452"/><path d="M288 180H452"/><path d="M288 216H452"/><path d="M288 252H452"/></g>
-<g fill="none" stroke="#cfc5b3" stroke-width="1.2"><circle cx="99" cy="28" r="10"/><circle cx="130" cy="28" r="10"/><circle cx="160" cy="28" r="10"/><circle cx="226" cy="28" r="10"/><path d="M99 38V52M130 38V52M160 38V52M226 38V52" stroke-opacity=".6"/></g>
-<g fill="#cfc5b3" font-family="Manrope,'Helvetica Neue',Arial,sans-serif" font-size="13" text-anchor="middle"><text x="99" y="33">1</text><text x="130" y="33">2</text><text x="160" y="33">3</text><text x="226" y="33">4</text></g>
-<g font-family="Manrope,'Helvetica Neue',Arial,sans-serif" font-size="14" fill="#cfc5b3">
-<path d="M24 312h22" stroke="#8fb7e8" stroke-width="2" stroke-linecap="round"/><path d="M20 312l9-5v10z" fill="#8fb7e8"/><text x="54" y="317">охлаждение</text>
-<path d="M176 312h22" stroke="#fdc68c" stroke-width="2.4"/><text x="206" y="317">контур 1</text>
-<path d="M312 312h22" stroke="#fff1dc" stroke-width="2.4"/><text x="342" y="317">контур 2</text></g>
-</svg><figcaption>Охлаждение модулей и два рабочих контура матрицы обеспечивают долговечную работу модулей и сохранность камня на десятилетия</figcaption></figure>
-<ol class="layers">
-<li><div><b>Корпус</b><span>Алюминиевый композит и HIPS-стекло, склеенные полимерными составами</span></div></li>
-<li><div><b>Матрица светодиодов</b><span>Светодиоды с высокой плотностью размещения</span></div></li>
-<li><div><b>Светофильтр</b><span>HIPS-стекло, устойчивое к нагреву и ультрафиолету</span></div></li>
-<li><div><b>Подсвечиваемый камень</b><span>Ониксы из Индии и Бразилии особенно эффектно смотрятся в матричной подсветке</span></div></li>
+<figure class="fig mx" id="mx" style="margin:0">
+<svg viewBox="0 0 560 384" role="img" aria-labelledby="mx-ttl"><title id="mx-ttl">Матричный модуль по слоям: охлаждающая алюминиевая панель отводит тепло назад, матрица светодиодов из двух рабочих контуров, светофильтр и камень, через который проходит ровный свет</title>
+<defs>
+<radialGradient id="mxG1"><stop offset="0" stop-color="#fdc68c" stop-opacity=".9"/><stop offset="1" stop-color="#fdc68c" stop-opacity="0"/></radialGradient>
+<radialGradient id="mxG2"><stop offset="0" stop-color="#fff1dc" stop-opacity=".85"/><stop offset="1" stop-color="#fff1dc" stop-opacity="0"/></radialGradient>
+<marker id="mxA" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#d98a5f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<polygon id="mx-glow" fill="rgb(var(--glow))" filter="url(#blur)" opacity="0"/>
+<g id="mx-heat" fill="none" stroke="#d98a5f" stroke-width="1.6" stroke-linecap="round" marker-end="url(#mxA)" opacity="0"><path/><path/><path/></g>
+<g class="mx-l" data-i="0"><polygon class="mx-sd" fill="#3c3f42"/><polygon class="mx-tp" fill="#8c9094"/><g class="mx-f"><rect width="120" height="250" fill="#5b5e62"/><g stroke="#6c7074" stroke-width="1"><path d="M0 22H120M0 50H120M0 78H120M0 106H120M0 134H120M0 162H120M0 190H120M0 218H120"/></g><rect width="120" height="250" fill="none" stroke="#787c80"/></g></g>
+<g class="mx-l" data-i="1"><polygon class="mx-sd" fill="#1a1815"/><polygon class="mx-tp" fill="#3a352e"/><g class="mx-f"><rect width="120" height="250" fill="#24211d"/><rect width="120" height="250" fill="none" stroke="#3a352e"/><path d="M14 18V232" stroke="#fdc68c" stroke-opacity=".55" stroke-width="1.2"/><path d="M106 18V232" stroke="#fff1dc" stroke-opacity=".45" stroke-width="1.2"/><g id="mx-leds"></g></g></g>
+<g class="mx-l" data-i="2"><polygon class="mx-sd" fill="#9c968c" opacity=".8"/><polygon class="mx-tp" fill="#e6e1d8" opacity=".85"/><g class="mx-f"><rect width="120" height="250" fill="#e9e4dc" opacity=".32"/><rect width="120" height="250" fill="none" stroke="#e9e4dc" stroke-opacity=".7"/></g></g>
+<g class="mx-l" data-i="3" id="mx-stone" style="--lum:0"><polygon class="mx-sd" fill="#7a4a17"/><polygon class="mx-tp" fill="#c98a3a"/><g class="mx-f"><g class="stone" data-x="0" data-y="0" data-w="120" data-h="250" data-tex="s"></g><rect width="120" height="250" fill="none" stroke="#161412" stroke-opacity=".6"/></g></g>
+<g id="mx-marks" fill="none" stroke="#cfc5b3" stroke-width="1.2"></g>
+<g font-family="Manrope,'Helvetica Neue',Arial,sans-serif" font-size="14"><text id="mx-th" fill="#d98a5f" opacity="0">отвод тепла</text><text id="mx-tl" fill="#fdc68c" text-anchor="end" opacity="0">ровный свет</text></g>
+</svg>
+<figcaption>
+<div class="mx-ctl" role="group" aria-label="Рабочие контуры матрицы"><button type="button" class="mx-b" id="mx-b1" aria-pressed="true"><i style="background:#fdc68c"></i>Контур 1</button><button type="button" class="mx-b" id="mx-b2" aria-pressed="true"><i style="background:#fff1dc"></i>Контур 2</button></div>
+<p class="mx-st" id="mx-st" aria-live="polite">Оба контура работают — камень светится в полную силу. Отключите любой: свечение сохранится.</p>
+Охлаждение модулей и два рабочих контура матрицы обеспечивают долговечную работу модулей и сохранность камня на десятилетия</figcaption></figure>
+<ol class="layers mx-list">
+<li data-i="0" tabindex="0"><div><b>Охлаждающая алюминиевая панель</b><span>Алюминиевый композит и HIPS-стекло, склеенные полимерными составами</span></div></li>
+<li data-i="1" tabindex="0"><div><b>Матрица светодиодов</b><span>Светодиоды с высокой плотностью размещения</span></div></li>
+<li data-i="2" tabindex="0"><div><b>Светофильтр</b><span>HIPS-стекло, устойчивое к нагреву и ультрафиолету</span></div></li>
+<li data-i="3" tabindex="0"><div><b>Подсвечиваемый камень</b><span>Ониксы из Индии и Бразилии особенно эффектно смотрятся в матричной подсветке</span></div></li>
 </ol>
 </div>
 </div></section>
@@ -696,6 +717,66 @@ if(mq.addEventListener)mq.addEventListener('change',function(){set(false)});else
   document.addEventListener('click',function(e){if(!box.contains(e.target))lock();});
   document.addEventListener('touchstart',function(e){if(!box.contains(e.target))lock();},{passive:true});
   box.addEventListener('mouseleave',lock);
+})();
+</script>
+<script>
+/* схема модуля: слои разъезжаются при прокрутке, контуры включаются кнопками */
+(function(){
+var fig=document.getElementById('mx');if(!fig)return;
+var NS='http://www.w3.org/2000/svg',W=120,H=250,K=56,Y=96,VW=560,T=[18,10,6,24],GAP=66;
+var L=[].slice.call(fig.querySelectorAll('.mx-l')),list=document.querySelector('.mx-list'),items=[].slice.call(list.querySelectorAll('li'));
+var stone=document.getElementById('mx-stone'),glow=document.getElementById('mx-glow'),heat=document.getElementById('mx-heat'),hp=heat.querySelectorAll('path');
+var th=document.getElementById('mx-th'),tl=document.getElementById('mx-tl'),marks=document.getElementById('mx-marks'),ledG=document.getElementById('mx-leds');
+var st=document.getElementById('mx-st'),b1=document.getElementById('mx-b1'),b2=document.getElementById('mx-b2');
+var c=[true,true],e=0,shown=-1;
+function mk(n,a,p){var x=document.createElementNS(NS,n);for(var k in a)x.setAttribute(k,a[k]);if(p)p.appendChild(x);return x}
+var leds=[];
+for(var r=0;r<7;r++)for(var q=0;q<3;q++){var ci=(r+q)%2,u=30+q*30,v=24+r*33,g=mk('g',{},ledG);
+mk('circle',{cx:u,cy:v,r:15,fill:'url(#mxG'+(ci+1)+')',opacity:0},g);
+var sq=mk('rect',{x:u-4.5,y:v-4.5,width:9,height:9,rx:1.5,fill:'#3a352e',stroke:ci?'#fff1dc':'#fdc68c','stroke-width':.8,'stroke-opacity':.6},g);
+leds.push({c:ci,g:g.firstChild,sq:sq,col:ci?'#fff1dc':'#fdc68c',th:.08+(r*3+q)/21*.5});}
+var M=[];for(var i=0;i<4;i++){var g=mk('g',{class:'mx-mk','data-i':i,tabindex:0,role:'button','aria-label':items[i].querySelector('b').textContent},marks);
+var ln=mk('path',{'stroke-opacity':.5},g),cc=mk('circle',{r:11},g),tx=mk('text',{'text-anchor':'middle','font-size':13,fill:'#cfc5b3',stroke:'none','font-family':"Manrope,'Helvetica Neue',Arial,sans-serif"},g);tx.textContent=i+1;M.push({g:g,ln:ln,c:cc,t:tx});}
+function P(a){return a.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' ')}
+function cl(v){return v<0?0:v>1?1:v}
+function ease(v){return v*v*(3-2*v)}
+function draw(){
+var gap=GAP*ease(cl(e/.75)),light=cl((e-.45)/.45),tot=W,i;
+for(i=0;i<4;i++)tot+=T[i];tot+=3*gap;
+var x=(VW-tot)/2+8,xs=[];
+for(i=0;i<4;i++){var l=L[i],d0=x,d1=x+T[i];
+l.querySelector('.mx-sd').setAttribute('points',P([[d0,Y],[d1,Y],[d1,Y+H],[d0,Y+H]]));
+l.querySelector('.mx-tp').setAttribute('points',P([[d0,Y],[d1,Y],[d1+W,Y-K],[d0+W,Y-K]]));
+l.querySelector('.mx-f').setAttribute('transform','matrix(1,'+(-K/W).toFixed(4)+',0,1,'+d1.toFixed(1)+','+Y+')');
+xs.push(d1);x=d1+gap;}
+var on=(c[0]?1:0)+(c[1]?1:0),k=on===2?1:on?.8:0;
+leds.forEach(function(d){var lit=c[d.c]&&light>d.th;d.sq.setAttribute('fill',lit?d.col:'#3a352e');d.g.setAttribute('opacity',lit?.75:0)});
+var lum=light*k;stone.style.setProperty('--lum',(.04+lum*.86).toFixed(3));
+var sx=xs[3];glow.setAttribute('points',P([[sx+40,Y+10],[sx+W+60,Y-K+10],[sx+W+60,Y-K+H-10],[sx+40,Y+H-10]]));glow.setAttribute('opacity',(lum*.55).toFixed(3));
+var px=xs[0]-T[0]-6;for(i=0;i<3;i++){var yy=Y+60+i*62;hp[i].setAttribute('d','M'+px.toFixed(1)+' '+yy+'q-8 -6 -16 0t-16 0t-16 0h-14');}
+heat.setAttribute('opacity',(light*(on?1:.25)).toFixed(2));
+th.setAttribute('x',Math.max(12,px-70).toFixed(1));th.setAttribute('y',Y+H+22);th.setAttribute('opacity',light.toFixed(2));
+tl.setAttribute('x',(VW-14).toFixed(1));tl.setAttribute('y',Y+H+22);tl.setAttribute('opacity',(lum).toFixed(2));
+var mo=cl((e-.35)/.35);
+for(i=0;i<4;i++){var ax=xs[i]+W*.32,ay=Y-K*.32,mx=xs[i]+W*.32,my=22;
+M[i].ln.setAttribute('d','M'+ax.toFixed(1)+' '+(ay-2).toFixed(1)+'V'+(my+11));M[i].c.setAttribute('cx',mx.toFixed(1));M[i].c.setAttribute('cy',my);M[i].t.setAttribute('x',mx.toFixed(1));M[i].t.setAttribute('y',my+4.5);M[i].g.style.opacity=mo.toFixed(2);}
+}
+function status(){var on=(c[0]?1:0)+(c[1]?1:0);
+st.textContent=on===2?'Оба контура работают — камень светится в полную силу. Отключите любой: свечение сохранится.':on===1?'Контур '+(c[0]?2:1)+' отключён — второй контур продолжает светить, камень не гаснет и не покрывается пятнами.':'Оба контура отключены. В реальном изделии одновременный отказ двух контуров маловероятен.';
+b1.setAttribute('aria-pressed',c[0]);b2.setAttribute('aria-pressed',c[1]);draw();}
+b1.addEventListener('click',function(){c[0]=!c[0];status()});b2.addEventListener('click',function(){c[1]=!c[1];status()});
+function hl(i){if(i===shown)return;shown=i;
+fig.classList.toggle('hl',i>=0);list.classList.toggle('hl',i>=0);
+L.forEach(function(l,j){l.classList.toggle('on',j===i)});M.forEach(function(m,j){m.g.classList.toggle('on',j===i)});items.forEach(function(it,j){it.classList.toggle('on',j===i)});}
+function bind(el,i){el.addEventListener('mouseenter',function(){hl(i)});el.addEventListener('mouseleave',function(){hl(-1)});el.addEventListener('focus',function(){hl(i)});el.addEventListener('blur',function(){hl(-1)});
+el.addEventListener('click',function(ev){if(ev.pointerType==='mouse')return;hl(shown===i?-1:i)});
+el.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();hl(shown===i?-1:i)}});}
+items.forEach(function(it,i){bind(it,i)});M.forEach(function(m,i){bind(m.g,i)});L.forEach(function(l,i){l.addEventListener('mouseenter',function(){hl(i)});l.addEventListener('mouseleave',function(){hl(-1)});});
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches,raf=0;
+function onScroll(){raf=0;var r=fig.getBoundingClientRect(),vh=window.innerHeight||document.documentElement.clientHeight,start=vh*.92,end=vh*.25,v=cl((start-r.top)/(start-end));if(Math.abs(v-e)>.002){e=v;draw();}}
+if(reduce){e=1;draw();}else{draw();onScroll();
+window.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(onScroll)},{passive:true});
+window.addEventListener('resize',function(){if(!raf)raf=requestAnimationFrame(onScroll)});}
 })();
 </script>
 </body>
