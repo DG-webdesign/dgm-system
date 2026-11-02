@@ -20,6 +20,7 @@
 <meta property="og:image:alt" content="Подсвеченная колонна из оникса и знак DGM SYSTEM">
 <meta name="twitter:card" content="summary_large_image">
 <script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('dgm-theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}d.setAttribute('data-theme',t);var m=document.getElementById('theme-color');if(m)m.setAttribute('content',t==='dark'?'#141311':'#f3efe7');})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"DGM SYSTEM","url":"https://dg-webdesign.github.io/dgm-system/","logo":"https://dg-webdesign.github.io/dgm-system/brand/icon-192.png","description":"Матричная подсветка для оникса, кварцита и витражей.","telephone":"+79309672131","address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"Нахимовский проспект, 24, ЦДИ «Экспострой»","addressCountry":"RU"},"contactPoint":{"@type":"ContactPoint","telephone":"+79309672131","contactType":"customer service","availableLanguage":"ru"}}</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23f3efe7'/%3E%3Cpath fill='%231c1b19' d='M18 10h9v44h-9zM31 10h15v44H31z'/%3E%3C/svg%3E">
 <link rel="alternate icon" type="image/png" sizes="32x32" href="brand/icon-32.png">
 <link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
@@ -49,7 +50,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,.
 .menu i:nth-child(1){top:18px}.menu i:nth-child(2){top:25px}
 header.open .menu i:nth-child(1){top:21px;transform:rotate(45deg)}
 header.open .menu i:nth-child(2){top:21px;transform:rotate(-45deg)}
-@media(max-width:1000px){
+@media(max-width:1200px){
 .menu{display:block}
 nav{display:none;position:absolute;top:100%;left:0;right:0;margin:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px clamp(28px,7.5vw,120px) 32px;max-height:calc(100vh - 77px);max-height:calc(100dvh - 77px - env(safe-area-inset-top,0px));overflow-y:auto}
 header.open nav{display:flex}
@@ -144,8 +145,42 @@ body,header,nav,.mat,footer{transition:background-color .35s ease,color .35s eas
 .theme .i-sun{display:none}
 :root[data-theme="dark"] .theme .i-sun{display:block}
 :root[data-theme="dark"] .theme .i-moon{display:none}
-@media(max-width:1000px){.theme{margin-left:auto;margin-right:2px}.menu{margin-left:0}}
+@media(max-width:1200px){.theme{margin-left:auto;margin-right:2px}.menu{margin-left:0}}
 @media (prefers-reduced-motion:reduce){body,header,nav,.mat,footer,.theme{transition:none}}
+/* ---- контакты ---- */
+nav a.cta{color:var(--ink);border:1px solid var(--ink);padding:10px 20px;margin-left:4px;letter-spacing:.04em;transition:background-color .2s ease,color .2s ease}
+nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
+@media(max-width:1200px){nav a.cta{font:500 14px/1 var(--sans);letter-spacing:.08em;text-align:center;border:1px solid var(--ink);padding:20px 16px;margin:28px 0 0}}
+.contacts{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(40px,6vw,96px);margin-top:clamp(56px,7vw,96px);align-items:start}
+@media(max-width:900px){.contacts{grid-template-columns:1fr}}
+.c-list{margin:0;padding:0;list-style:none}
+.c-item{border-top:1px solid var(--line);padding:26px 0}
+.c-item:last-child{border-bottom:1px solid var(--line)}
+.c-label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-bottom:10px}
+.c-val{font:400 clamp(22px,2.3vw,30px)/1.35 var(--serif);margin:0;font-style:normal}
+.c-val a{text-decoration:none}
+.c-val a:hover{color:var(--deep)}
+.c-act{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.btn{display:-webkit-inline-box;display:-webkit-inline-flex;display:inline-flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;min-height:56px;padding:0 30px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font:500 14px/1.2 var(--sans);letter-spacing:.05em;text-decoration:none;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.btn:hover,.btn:focus-visible{background:var(--deep);border-color:var(--deep);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink)}
+.btn-ghost:hover,.btn-ghost:focus-visible{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.map{position:relative;width:100%;height:0;padding-top:78%;border:1px solid var(--line);background:var(--card);overflow:hidden}
+.map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block}
+.map.locked iframe{pointer-events:none}
+.map-lock{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;border:0;padding:0;margin:0;background:transparent;cursor:pointer;display:block;-webkit-tap-highlight-color:transparent}
+.map-lock span{position:absolute;left:12px;bottom:12px;padding:8px 12px;font:400 12px/1.2 var(--sans);color:#fff;background:rgba(20,19,17,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.map:not(.locked) .map-lock{display:none}
+:root[data-theme="dark"] .map iframe{filter:brightness(.78) contrast(1.05)}
+.routes{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:18px;font-size:13px;color:var(--mute)}
+.routes a{color:var(--mute);text-underline-offset:4px}
+.routes a:hover{color:var(--ink)}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:48px clamp(40px,5vw,72px);margin-top:clamp(56px,7vw,96px)}
+.how>div{border-top:1px solid var(--deep);padding-top:28px}
+.how h3{font-size:24px;margin-bottom:12px}
+.how p{margin:0;color:var(--mute);font-size:15px}
+@media(max-width:560px){.c-act .btn{width:100%}}
+
 #spec .big{grid-template-columns:repeat(2,minmax(0,1fr))}
 .big strong{white-space:nowrap}
 @media(max-width:560px){#spec .big{grid-template-columns:1fr}}
@@ -223,7 +258,7 @@ body,header,nav,.mat,footer{transition:background-color .35s ease,color .35s eas
 
 <header><div class="wrap">
 <a class="logo" href="#top" aria-label="DGM SYSTEM"><svg aria-hidden="true"><use href="#dgm-mark"/></svg><span><b>DGM</b> SYSTEM</span></a>
-<nav id="nav" aria-label="Разделы"><a href="#idea">Принцип</a><a href="#mods">Модули</a><a href="#stones">Интерьеры</a><a href="#spec">Характеристики</a><a href="#kit">Комплект</a><a href="#care">Эксплуатация</a><a href="#warranty">Гарантия</a></nav>
+<nav id="nav" aria-label="Разделы"><a href="#idea">Принцип</a><a href="#mods">Модули</a><a href="#stones">Интерьеры</a><a href="#spec">Характеристики</a><a href="#kit">Комплект</a><a href="#care">Эксплуатация</a><a href="#warranty">Гарантия</a><a class="cta" href="#contacts">Связаться</a></nav>
 <button class="theme" id="theme" type="button" aria-label="Тёмная тема" aria-pressed="false" title="Тёмная / светлая тема"><svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
 <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню"><i></i><i></i></button>
 </div></header>
@@ -265,18 +300,27 @@ body,header,nav,.mat,footer{transition:background-color .35s ease,color .35s eas
 <section id="mods"><div class="wrap">
 <h2>Как устроен матричный модуль</h2>
 <div class="split">
-<figure class="fig" style="margin:0"><svg viewBox="0 0 480 300" role="img" aria-label="Разрез: корпус, матрица светодиодов, светофильтр, камень">
-<rect width="480" height="300" fill="#14110e"/>
-<g class="glow"><rect x="240" y="30" width="230" height="240" fill="rgb(var(--glow))" opacity=".5" filter="url(#blur)"/></g>
-<rect x="40" y="40" width="46" height="220" fill="#3c3c3c"/>
-<rect x="86" y="40" width="26" height="220" fill="#8a8a8a"/>
-<g fill="#fdc68c"><rect x="92" y="54" width="10" height="10"/><rect x="92" y="90" width="10" height="10"/><rect x="92" y="126" width="10" height="10"/><rect x="92" y="162" width="10" height="10"/><rect x="92" y="198" width="10" height="10"/><rect x="92" y="234" width="10" height="10"/></g>
-<rect x="112" y="40" width="12" height="220" fill="#d9d5cf" opacity=".85"/>
-<g class="stone" data-x="124" data-y="40" data-w="124" data-h="220" data-tex="s"></g>
-<g stroke="#fdc68c" stroke-width="1.2" opacity=".85"><path d="M102 59h146M102 95h146M102 131h146M102 167h146M102 203h146M102 239h146"/></g>
-<g class="glow" stroke="rgb(var(--glow))" stroke-width="1.4"><path d="M248 59h200M248 131h200M248 203h200M248 95h200M248 167h200M248 239h200"/></g>
-<g fill="#fdc68c"><path d="M150 22l6 12h-12zM190 22l6 12h-12zM150 278l6-12h-12zM190 278l6-12h-12z"/></g>
-</svg><figcaption>Ход света: через камень и в торцы матрицы</figcaption></figure>
+<figure class="fig" style="margin:0"><svg viewBox="0 0 480 330" role="img" aria-label="Схема модуля в разрезе: корпус с отводом тепла, матрица светодиодов из двух рабочих контуров, светофильтр и камень">
+<rect width="480" height="330" fill="#14110e"/>
+<g class="glow"><rect x="290" y="56" width="170" height="220" fill="rgb(var(--glow))" opacity=".5" filter="url(#blur)"/></g>
+<g stroke="#8fb7e8" stroke-width="2" stroke-linecap="round" fill="none"><path d="M72 112H34M72 166H34M72 220H34"/></g>
+<g fill="#8fb7e8"><path d="M26 112l10-6v12zM26 166l10-6v12zM26 220l10-6v12z"/></g>
+<rect x="76" y="52" width="46" height="228" fill="#3c3c3c"/>
+<rect x="76" y="52" width="46" height="228" fill="none" stroke="#5a5a5a"/>
+<rect x="122" y="52" width="30" height="228" fill="#8a8a8a"/>
+<g fill="none" stroke-width="1.6"><path d="M127 72V216M127 72H131M127 144H131M127 216H131" stroke="#fdc68c"/><path d="M147 108V252M147 108H143M147 180H143M147 252H143" stroke="#fff1dc"/></g>
+<rect x="131" y="66" width="12" height="12" fill="#fdc68c"/><rect x="131" y="102" width="12" height="12" fill="#fff1dc"/><rect x="131" y="138" width="12" height="12" fill="#fdc68c"/><rect x="131" y="174" width="12" height="12" fill="#fff1dc"/><rect x="131" y="210" width="12" height="12" fill="#fdc68c"/><rect x="131" y="246" width="12" height="12" fill="#fff1dc"/>
+<rect x="152" y="52" width="12" height="228" fill="#d9d5cf" opacity=".85"/>
+<g class="stone" data-x="164" data-y="52" data-w="124" data-h="228" data-tex="s"></g>
+<g stroke-width="1.2" opacity=".85"><path d="M143 72H288" stroke="#fdc68c"/><path d="M143 108H288" stroke="#fff1dc"/><path d="M143 144H288" stroke="#fdc68c"/><path d="M143 180H288" stroke="#fff1dc"/><path d="M143 216H288" stroke="#fdc68c"/><path d="M143 252H288" stroke="#fff1dc"/></g>
+<g class="glow" stroke="rgb(var(--glow))" stroke-width="1.4"><path d="M288 72H452"/><path d="M288 108H452"/><path d="M288 144H452"/><path d="M288 180H452"/><path d="M288 216H452"/><path d="M288 252H452"/></g>
+<g fill="none" stroke="#cfc5b3" stroke-width="1.2"><circle cx="99" cy="28" r="10"/><circle cx="130" cy="28" r="10"/><circle cx="160" cy="28" r="10"/><circle cx="226" cy="28" r="10"/><path d="M99 38V52M130 38V52M160 38V52M226 38V52" stroke-opacity=".6"/></g>
+<g fill="#cfc5b3" font-family="Manrope,'Helvetica Neue',Arial,sans-serif" font-size="13" text-anchor="middle"><text x="99" y="33">1</text><text x="130" y="33">2</text><text x="160" y="33">3</text><text x="226" y="33">4</text></g>
+<g font-family="Manrope,'Helvetica Neue',Arial,sans-serif" font-size="14" fill="#cfc5b3">
+<path d="M24 312h22" stroke="#8fb7e8" stroke-width="2" stroke-linecap="round"/><path d="M20 312l9-5v10z" fill="#8fb7e8"/><text x="54" y="317">охлаждение</text>
+<path d="M176 312h22" stroke="#fdc68c" stroke-width="2.4"/><text x="206" y="317">контур 1</text>
+<path d="M312 312h22" stroke="#fff1dc" stroke-width="2.4"/><text x="342" y="317">контур 2</text></g>
+</svg><figcaption>Охлаждение модулей и два рабочих контура матрицы дают гарантию долговечной работы модулей и сохранение камня на десятилетия</figcaption></figure>
 <ol class="layers">
 <li><div><b>Корпус</b><span>Алюминиевый композит и HIPS-стекло, склеенные полимерными составами</span></div></li>
 <li><div><b>Матрица светодиодов</b><span>Светодиоды с высокой плотностью размещения</span></div></li>
@@ -408,6 +452,35 @@ body,header,nav,.mat,footer{transition:background-color .35s ease,color .35s eas
 <li>Монтаж специалистом, не допущенным DGM-SYSTEM, если участие квалифицированного персонала предусмотрено документацией.</li>
 </ul></details>
 </div></section>
+<section id="contacts"><div class="wrap">
+<h2>Контакты</h2>
+<p class="sub">Инженер-консультант ответит на технические вопросы и поможет подобрать подсветку под ваш камень и проект.</p>
+<div class="contacts">
+<div>
+<ul class="c-list">
+<li class="c-item"><span class="c-label">Адрес</span><address class="c-val">г. Москва, Нахимовский проспект, д. 24, ЦДИ «Экспострой»</address></li>
+<li class="c-item"><span class="c-label">Телефон</span><p class="c-val"><a href="tel:+79309672131">+7 930 967-21-31</a></p></li>
+</ul>
+<div class="c-act">
+<a class="btn" href="tel:+79309672131">Позвонить инженеру-консультанту</a>
+<a class="btn btn-ghost" href="https://yandex.ru/maps/?rtext=~55.671828%2C37.584918&amp;rtt=auto" target="_blank" rel="noopener">Построить маршрут</a>
+</div>
+</div>
+<div>
+<div class="map locked" id="map">
+<iframe title="Карта: Нахимовский проспект, 24, ЦДИ «Экспострой»" src="https://yandex.ru/map-widget/v1/?ll=37.584918%2C55.671828&z=16&pt=37.584918%2C55.671828%2Cpm2rdm" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+<button class="map-lock" id="map-lock" type="button" aria-label="Включить управление картой"><span>Нажмите, чтобы управлять картой</span></button>
+</div>
+<div class="routes"><a href="https://yandex.ru/maps/?pt=37.584918,55.671828&amp;z=16&amp;l=map" target="_blank" rel="noopener">Открыть в Яндекс Картах</a><a href="https://www.google.com/maps/search/?api=1&amp;query=55.671828,37.584918" target="_blank" rel="noopener">Открыть в Google Картах</a></div>
+</div>
+</div>
+<div class="how">
+<div><h3>На метро</h3><p>Ближайшие станции — «Профсоюзная», «Нагорная» и «Академическая», примерно 1,5 км от центра по прямой.</p></div>
+<div><h3>На автомобиле</h3><p>Центр расположен на пересечении Нахимовского и Севастопольского проспектов. Въезд — со стороны любого из них, парковка за шлагбаумом.</p></div>
+<div><h3>Ориентир</h3><p>Центр дизайна и интерьера «Экспострой», Нахимовский проспект, 24.</p></div>
+</div>
+</div></section>
+
 </main>
 
 <footer><div class="wrap"><a class="logo logo-s" href="#top" aria-label="DGM SYSTEM, наверх"><svg aria-hidden="true"><use href="#dgm-mark"/></svg><span><b>DGM</b> SYSTEM</span></a><span>Матричные модули для внутренней подсветки камня и витражей. Версия на русском языке; английская и французская версии готовятся.</span></div></footer>
@@ -451,7 +524,7 @@ kr.addEventListener('input',gl);gl();
 })();
 </script>
 <script>
-(function(){var h=document.querySelector('header'),b=document.getElementById('menu'),n=document.getElementById('nav'),mq=window.matchMedia('(max-width:1000px)');
+(function(){var h=document.querySelector('header'),b=document.getElementById('menu'),n=document.getElementById('nav'),mq=window.matchMedia('(max-width:1200px)');
 function set(o){h.classList.toggle('open',o);b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню')}
 b.addEventListener('click',function(){set(!h.classList.contains('open'))});
 n.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
@@ -569,6 +642,19 @@ if(mq.addEventListener)mq.addEventListener('change',function(){set(false)});else
     var on=function(e){var s;try{s=localStorage.getItem('dgm-theme');}catch(x){}if(s!=='light'&&s!=='dark')apply(e.matches?'dark':'light',false);};
     if(mq.addEventListener)mq.addEventListener('change',on);else if(mq.addListener)mq.addListener(on);
   }
+})();
+</script>
+<script>
+/* карта: страница прокручивается свободно, управление картой включается нажатием */
+(function(){
+  var box=document.getElementById('map'),btn=document.getElementById('map-lock');
+  if(!box||!btn)return;
+  function unlock(){box.classList.remove('locked');}
+  function lock(){box.classList.add('locked');}
+  btn.addEventListener('click',unlock);
+  document.addEventListener('click',function(e){if(!box.contains(e.target))lock();});
+  document.addEventListener('touchstart',function(e){if(!box.contains(e.target))lock();},{passive:true});
+  box.addEventListener('mouseleave',lock);
 })();
 </script>
 </body>
