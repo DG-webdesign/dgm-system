@@ -203,6 +203,7 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 .btn:hover,.btn:focus-visible{background:var(--deep);border-color:var(--deep);color:#fff}
 .btn-ghost{background:transparent;color:var(--ink)}
 .btn-ghost:hover,.btn-ghost:focus-visible{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.c-hint{margin:18px 0 0;font-size:14px;color:var(--mute)}
 .map{position:relative;width:100%;height:0;padding-top:78%;border:1px solid var(--line);background:var(--card);overflow:hidden}
 .map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block}
 .map.locked iframe{pointer-events:none}
@@ -325,7 +326,7 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 </div>
 
 <section id="idea"><div class="wrap">
-<h2>Подсветка, которой не видно, пока она не нужна</h2>
+<h2>Когда камень наполняется светом</h2>
 <p class="sub">Модули крепятся за камнем и не требуют доступа при эксплуатации. Днём это спокойное панно из натурального камня, вечером — источник мягкого света, которым вы управляете с пульта.</p>
 <div class="cols">
 <div><h3>Равномерное свечение</h3><p>Плотная матрица источников и светофильтр дают малое угловое рассеивание: свет ложится ровно по всей поверхности камня.</p></div>
@@ -501,8 +502,12 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 </ul>
 <div class="c-act">
 <a class="btn" href="tel:+79309672131">Позвонить инженеру-консультанту</a>
+<a class="btn btn-ghost" href="https://wa.me/79309672131" target="_blank" rel="noopener">WhatsApp</a>
+<a class="btn btn-ghost" href="https://t.me/+79309672131" target="_blank" rel="noopener">Telegram</a>
+<button class="btn btn-ghost" type="button" id="max-btn" data-num="+79309672131">MAX</button>
 <a class="btn btn-ghost" href="https://yandex.ru/maps/?rtext=~55.671828%2C37.584918&amp;rtt=auto" target="_blank" rel="noopener">Построить маршрут</a>
 </div>
+<p class="c-hint" id="max-hint" role="status" aria-live="polite" hidden></p>
 </div>
 <div>
 <div class="map locked" id="map">
@@ -683,6 +688,20 @@ if(mq.addEventListener)mq.addEventListener('change',function(){set(false)});else
 })();
 </script>
 <script>
+/* MAX: прямой ссылки по номеру нет — копируем номер и пробуем открыть приложение */
+(function(){
+  var b=document.getElementById('max-btn'),h=document.getElementById('max-hint');
+  if(!b)return;
+  function say(t){h.hidden=false;h.textContent=t;}
+  function legacy(n){try{var t=document.createElement('textarea');t.value=n;t.setAttribute('readonly','');t.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(t);t.select();t.setSelectionRange(0,99);var r=document.execCommand('copy');document.body.removeChild(t);return r;}catch(e){return false;}}
+  b.addEventListener('click',function(){
+    var n=b.getAttribute('data-num');
+    function done(ok){say(ok?'Номер '+n+' скопирован. Откройте MAX и найдите контакт по номеру.':'Найдите нас в MAX по номеру '+n+'.');}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(n).then(function(){done(true);},function(){done(legacy(n));});
+    }else done(legacy(n));
+  });
+})();
 /* карта: страница прокручивается свободно, управление картой включается нажатием */
 (function(){
   var box=document.getElementById('map'),btn=document.getElementById('map-lock');
