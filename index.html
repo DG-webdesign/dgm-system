@@ -249,14 +249,15 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 .mx-mk{cursor:pointer;transition:opacity .35s ease}
 .mx-mk circle{fill:#14110e;transition:fill .25s,stroke .25s}
 .mx-mk.on circle{fill:#cfc5b3}.mx-mk.on text{fill:#14110e}
-.mx-ctl{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;margin:0 0 14px}
-.mx-b{font:500 13px/1 var(--sans);color:#cfc5b3;background:transparent;border:1px solid #3d3830;padding:10px 14px;display:inline-flex;align-items:center;gap:9px;cursor:pointer;transition:border-color .2s,color .2s}
-.mx-b i{width:18px;height:2.4px;display:block;transition:opacity .2s}
+.mx-ctl{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:0 0 14px}
+.mx-b{font:500 13px/1 var(--sans);color:#cfc5b3;background:transparent;border:1px solid #3d3830;padding:10px 13px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;cursor:pointer;transition:border-color .2s,color .2s}
+.mx-b i{width:14px;height:2.4px;display:block;transition:opacity .2s}
 .mx-b:hover,.mx-b:focus-visible{border-color:#8a7f6f}
 .mx-b[aria-pressed="false"]{color:#7d7568}.mx-b[aria-pressed="false"] i{opacity:.25}
 .mx-heat{font-size:13px;color:#cfc5b3;display:inline-flex;align-items:center;gap:9px;margin-left:6px}
 .mx-heat i{width:18px;height:0;border-top:1.6px dashed #d98a5f;display:block}
-.mx-st{margin:0 0 10px;color:#ece6d9;font-size:14px;min-height:3.2em}
+.mx-st{margin:0 0 10px;color:#ece6d9;font-size:14px}.mx-st:empty{display:none}
+@media(max-width:380px){.mx-b{padding:9px 10px}}
 .mx-list li{cursor:pointer;transition:opacity .3s}
 .mx-list li:focus-visible{outline:1px solid var(--deep);outline-offset:6px}
 .mx-list.hl li{opacity:.4}.mx-list.hl li.on{opacity:1}
@@ -378,8 +379,8 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 </svg>
 <figcaption>
 <div class="mx-ctl" role="group" aria-label="Рабочие контуры матрицы"><button type="button" class="mx-b" id="mx-b1" aria-pressed="true"><i style="background:#fdc68c"></i>Контур 1</button><button type="button" class="mx-b" id="mx-b2" aria-pressed="true"><i style="background:#fff1dc"></i>Контур 2</button></div>
-<p class="mx-st" id="mx-st" aria-live="polite">Оба контура работают — камень светится в полную силу. Отключите любой: свечение сохранится.</p>
-Охлаждение модулей и два рабочих контура матрицы обеспечивают долговечную работу модулей и сохранность камня на десятилетия</figcaption></figure>
+<p class="mx-st" id="mx-st" aria-live="polite"></p>
+Охлаждение модулей и второй резервный контур матрицы обеспечивают долговечную работу и сохранность камня на десятилетия</figcaption></figure>
 <ol class="layers mx-list">
 <li data-i="0" tabindex="0"><div><b>Охлаждающая алюминиевая панель</b><span>Алюминиевый композит и HIPS-стекло, склеенные полимерными составами</span></div></li>
 <li data-i="1" tabindex="0"><div><b>Матрица светодиодов</b><span>Светодиоды с высокой плотностью размещения</span></div></li>
@@ -763,16 +764,20 @@ for(i=0;i<4;i++){var ax=xs[i]+W*.32,ay=Y-K*.32,mx=xs[i]+W*.32,my=22;
 M[i].ln.setAttribute('d','M'+ax.toFixed(1)+' '+(ay-2).toFixed(1)+'V'+(my+11));M[i].c.setAttribute('cx',mx.toFixed(1));M[i].c.setAttribute('cy',my);M[i].t.setAttribute('x',mx.toFixed(1));M[i].t.setAttribute('y',my+4.5);M[i].g.style.opacity=mo.toFixed(2);}
 }
 function status(){var on=(c[0]?1:0)+(c[1]?1:0);
-st.textContent=on===2?'Оба контура работают — камень светится в полную силу. Отключите любой: свечение сохранится.':on===1?'Контур '+(c[0]?2:1)+' отключён — второй контур продолжает светить, камень не гаснет и не покрывается пятнами.':'Оба контура отключены. В реальном изделии одновременный отказ двух контуров маловероятен.';
+st.textContent=on===2?'':on===1?'Контур '+(c[0]?2:1)+' отключён — второй контур продолжает светить, камень не гаснет и не покрывается пятнами.':'Оба контура отключены. В реальном изделии одновременный отказ двух контуров маловероятен.';
 b1.setAttribute('aria-pressed',c[0]);b2.setAttribute('aria-pressed',c[1]);draw();}
 b1.addEventListener('click',function(){c[0]=!c[0];status()});b2.addEventListener('click',function(){c[1]=!c[1];status()});
 function hl(i){if(i===shown)return;shown=i;
 fig.classList.toggle('hl',i>=0);list.classList.toggle('hl',i>=0);
 L.forEach(function(l,j){l.classList.toggle('on',j===i)});M.forEach(function(m,j){m.g.classList.toggle('on',j===i)});items.forEach(function(it,j){it.classList.toggle('on',j===i)});}
-function bind(el,i){el.addEventListener('mouseenter',function(){hl(i)});el.addEventListener('mouseleave',function(){hl(-1)});el.addEventListener('focus',function(){hl(i)});el.addEventListener('blur',function(){hl(-1)});
-el.addEventListener('click',function(ev){if(ev.pointerType==='mouse')return;hl(shown===i?-1:i)});
+var touch=false,prev=-1,tT=0;
+function down(ev){touch=ev.type==='touchstart'||(ev.pointerType&&ev.pointerType!=='mouse');if(touch){prev=shown;clearTimeout(tT);tT=setTimeout(function(){touch=false},800);}}
+function bind(el,i){el.addEventListener('touchstart',down,{passive:true});if(window.PointerEvent)el.addEventListener('pointerdown',down);
+el.addEventListener('mouseenter',function(){if(!touch)hl(i)});el.addEventListener('mouseleave',function(){if(!touch)hl(-1)});el.addEventListener('focus',function(){if(!touch)hl(i)});el.addEventListener('blur',function(){if(!touch)hl(-1)});
+el.addEventListener('click',function(){if(touch)hl(prev===i?-1:i)});
 el.addEventListener('keydown',function(ev){if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();hl(shown===i?-1:i)}});}
-items.forEach(function(it,i){bind(it,i)});M.forEach(function(m,i){bind(m.g,i)});L.forEach(function(l,i){l.addEventListener('mouseenter',function(){hl(i)});l.addEventListener('mouseleave',function(){hl(-1)});});
+items.forEach(function(it,i){bind(it,i)});M.forEach(function(m,i){bind(m.g,i)});L.forEach(function(l,i){l.addEventListener('mouseenter',function(){if(!touch)hl(i)});l.addEventListener('mouseleave',function(){if(!touch)hl(-1)});});
+document.addEventListener('click',function(ev){if(shown>=0&&!ev.target.closest('.mx-list li,.mx-mk'))hl(-1)});
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches,raf=0;
 function onScroll(){raf=0;var r=fig.getBoundingClientRect(),vh=window.innerHeight||document.documentElement.clientHeight,start=vh*.95,end=vh*.15,v=cl((start-r.top)/(start-end));if(Math.abs(v-e)>.002){e=v;draw();}}
 if(reduce){e=1;draw();}else{draw();onScroll();
