@@ -127,7 +127,7 @@ input#kel::-moz-range-track{height:5px;background:linear-gradient(90deg,#ffa95c,
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid var(--card);box-shadow:0 0 0 1px var(--ink);margin-top:-7px}
 input#kel::-webkit-slider-thumb{margin-top:-6px}
 input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--ink);border:3px solid var(--card);box-shadow:0 0 0 1px var(--ink)}
-.glow{opacity:var(--lum);transition:opacity .2s}.spill{opacity:calc(var(--lum)*1.1);transition:opacity .2s}.lit{opacity:calc(var(--lum)*1.3);filter:url(#tint) brightness(calc(.95 + var(--lum)*.3)) contrast(1.12) saturate(1.3);transition:opacity .2s}.bloomL{opacity:calc(var(--lum)*var(--lum)*var(--lum)*.35);mix-blend-mode:screen;filter:url(#tint) url(#bl) saturate(1.4);transition:opacity .2s}
+.glow{opacity:var(--lum);transition:opacity .2s}.spill{opacity:calc(var(--lum)*1.1);transition:opacity .2s}.lit{opacity:calc(var(--lum)*1.3);filter:url(#litF);transition:opacity .2s}.bloomL{opacity:calc(var(--lum)*var(--lum)*var(--lum)*.35);mix-blend-mode:screen;filter:url(#bloomF);transition:opacity .2s}
 section{padding:clamp(120px,16vw,240px) 0;border-top:1px solid var(--line)}
 section h2{font-size:clamp(32px,4vw,56px);max-width:18em}
 section .sub{color:var(--mute);max-width:38em;line-height:1.9;margin:44px 0 0}
@@ -245,6 +245,7 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 /* ---- схема модуля «по слоям» ---- */
 .mx svg{touch-action:pan-y}
 .mx-l{transition:opacity .35s ease}
+#mx-stone .lit{filter:url(#litM)}
 .mx.hl .mx-l{opacity:.22}.mx.hl .mx-l.on{opacity:1}
 .mx-mk{cursor:pointer;transition:opacity .35s ease}
 .mx-mk circle{fill:#14110e;transition:fill .25s,stroke .25s}
@@ -275,6 +276,9 @@ nav a.cta:hover,nav a.cta:focus-visible{background:var(--ink);color:var(--bg)}
 <filter id="quartzD" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".006 .018" numOctaves="4" seed="21" result="w"/><feTurbulence type="turbulence" baseFrequency=".008 .024" numOctaves="4" seed="5" result="t"/><feDisplacementMap in="t" in2="w" scale="110" xChannelSelector="R" yChannelSelector="G"/><feColorMatrix values=".6 .4 0 0 0 .6 .4 0 0 0 .6 .4 0 0 0 0 0 0 0 1"/><feComponentTransfer><feFuncR type="table" tableValues=".42 .62 .86 .55 .90 .70 .80"/><feFuncG type="table" tableValues=".47 .66 .88 .60 .91 .74 .83"/><feFuncB type="table" tableValues=".42 .58 .80 .52 .84 .64 .74"/></feComponentTransfer></filter>
 <filter id="quartzL" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".006 .018" numOctaves="4" seed="21" result="w"/><feTurbulence type="turbulence" baseFrequency=".008 .024" numOctaves="4" seed="5" result="t"/><feDisplacementMap in="t" in2="w" scale="110" xChannelSelector="R" yChannelSelector="G"/><feColorMatrix values=".6 .4 0 0 0 .6 .4 0 0 0 .6 .4 0 0 0 0 0 0 0 1"/><feComponentTransfer><feFuncR type="table" tableValues=".80 .96 1 .92 1 .97 .99"/><feFuncG type="table" tableValues=".62 .88 1 .80 1 .92 .96"/><feFuncB type="table" tableValues=".36 .64 .90 .50 .92 .70 .80"/></feComponentTransfer></filter>
 <filter id="tint" color-interpolation-filters="sRGB"><feColorMatrix id="tm" type="matrix" values="1 0 0 0 0 0 .7 0 0 0 0 0 .4 0 0 0 0 0 1 0"/></filter>
+<filter id="litF" color-interpolation-filters="sRGB"><feColorMatrix class="tmx" type="matrix" values="1 0 0 0 0 0 .7 0 0 0 0 0 .4 0 0 0 0 0 1 0"/><feComponentTransfer id="litBC"><feFuncR type="linear" slope="1.2656" intercept="-0.06"/><feFuncG type="linear" slope="1.2656" intercept="-0.06"/><feFuncB type="linear" slope="1.2656" intercept="-0.06"/></feComponentTransfer><feColorMatrix type="saturate" values="1.3"/></filter>
+<filter id="litM" color-interpolation-filters="sRGB"><feColorMatrix class="tmx" type="matrix" values="1 0 0 0 0 0 .7 0 0 0 0 0 .4 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="linear" slope="1.3664" intercept="-0.06"/><feFuncG type="linear" slope="1.3664" intercept="-0.06"/><feFuncB type="linear" slope="1.3664" intercept="-0.06"/></feComponentTransfer><feColorMatrix type="saturate" values="1.3"/></filter>
+<filter id="bloomF" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feColorMatrix class="tmx" type="matrix" values="1 0 0 0 0 0 .7 0 0 0 0 0 .4 0 0 0 0 0 1 0"/><feGaussianBlur stdDeviation="7"/><feColorMatrix type="saturate" values="1.4"/></filter>
 <filter id="conc" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".03 .045" numOctaves="5" seed="8" result="n"/><feDiffuseLighting in="n" surfaceScale="1.8" diffuseConstant="1.05" lighting-color="#a39d95"><feDistantLight azimuth="235" elevation="55"/></feDiffuseLighting><feColorMatrix values=".5 0 0 0 0 0 .49 0 0 0 0 0 .47 0 0 0 0 0 1 0"/></filter>
 <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".7" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 <mask id="rf"><rect x="0" y="440" width="1000" height="120" fill="url(#fade)"/></mask>
@@ -557,14 +561,15 @@ var im=function(c,s){var i=mk('image',{x:0,y:0,width:w,height:h,preserveAspectRa
 o.appendChild(im('dk',TD[d.tex]));o.appendChild(im('lit',TL[d.tex]));o.appendChild(im('bloomL',TL[d.tex]));g.appendChild(o)});
 (function(){
 var r=document.getElementById('lum'),o=document.getElementById('lumv'),root=document.documentElement;
-function set(v){root.style.setProperty('--lum',(v/100).toFixed(2));o.textContent=v+'%'}
+var bcF=document.querySelectorAll('#litBC>*');
+function set(v){root.style.setProperty('--lum',(v/100).toFixed(2));o.textContent=v+'%';var sl=((.95+v/100*.3)*1.12).toFixed(4);for(var i=0;i<bcF.length;i++)bcF[i].setAttribute('slope',sl)}
 r.addEventListener('input',function(){set(+r.value)});set(60);
 var kr=document.getElementById('kel'),kv=document.getElementById('kelv'),tm=document.getElementById('tm');
 function rgb(K){var t=K/100,R,G,B;R=t<=66?255:329.698727446*Math.pow(t-60,-.1332047592);G=t<=66?99.4708025861*Math.log(t)-161.1195681661:288.1221695283*Math.pow(t-60,-.0755148492);B=t>=66?255:t<=19?0:138.5177312231*Math.log(t-10)-305.0447927307;return[R,G,B].map(function(v){return Math.max(0,Math.min(255,v))/255})}
 var c0=rgb(3000),L0=.3*c0[0]+.59*c0[1]+.11*c0[2];
 var c0=rgb(6900);
 function temp(K){var e=3000+(K-3000)*1.3,c=rgb(e).map(function(v,i){return 1+(v/c0[i]-1)*.9}),l=.3*c[0]+.59*c[1]+.11*c[2],g=1/Math.pow(l,.3);
-tm.setAttribute('values',[c[0]*g,0,0,0,0,0,c[1]*g,0,0,0,0,0,c[2]*g,0,0,0,0,0,1,0].map(function(v){return +v.toFixed(3)}).join(' '));kv.textContent=K+' К'}
+var tv=[c[0]*g,0,0,0,0,0,c[1]*g,0,0,0,0,0,c[2]*g,0,0,0,0,0,1,0].map(function(v){return +v.toFixed(3)}).join(' ');tm.setAttribute('values',tv);var tx=document.querySelectorAll('.tmx');for(var q=0;q<tx.length;q++)tx[q].setAttribute('values',tv);kv.textContent=K+' К'}
 kr.addEventListener('input',function(){temp(+kr.value)});temp(3000);
 })();
 </script>
